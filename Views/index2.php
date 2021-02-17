@@ -12,7 +12,7 @@
 	
 ?>
 	<center>
-	<div class="h3"> 1 -------- <span class="badge bg-secondary">2</span> -------- 3 -------- 4</div>	
+	<div> 1 -------- <span class="">2</span> -------- 3 -------- 4</div>	
 	</center>
 	
 <div class="container-fluid">
@@ -76,7 +76,10 @@
 							<td><?php  echo $fila['total']; ?></td>
 							<td>
 								<!-- <a href="indexsub.php?idprogfis=<?php echo $fila['idprogfis']; ?>">SA</a> -->
-								<a href="index3.php?id=<?php echo $fila['idprogfis'];?>" class="btn btn-danger">Prog.Finan.>></a>
+								<a href="#" onclick="enviar(<?php echo $fila['idprogfis'];?>)" class="btn btn-danger" id="enlace">Prog.Finan.>></a>
+								
+								<!-- <a href="#" onclick="enviar(<?php echo $fila['idprogfis'];?>)" class="btn btn-danger">Prog.Finan.>></a> -->
+								
 							</td>
 						</tr>
 						<?php 
@@ -111,46 +114,36 @@
 				  </div>
 				</div>
 
-				<div class="row">
-
-					<div class="col-md-8">
-						<div class="form-group">
-						  <label for="tarea" class="col-sm-2 col-form-label"></label>
-						  <div class="col-sm-12">
-						  	<input type="text" class="form-control" name="txtTarea" id="txtTarea">
-						  </div>
+				<div class="form-group row">
+					
+				<label for="tarea" class="col-sm-2 col-form-label">Unidad de Medida:</label>
+					<div class="col-sm-4">
+						<div class="input-field col s12">
+						
+							<select name="unidad_medida" id="unidad_medida">
+								<option value="0">[Seleccionar]</option>
+								<option value="1">Unidad</option>
+								<option value="2">Millar</option>
+								<option value="6">Informe</option>
+								<option value="3">Litro</option>
+								<option value="4">Galon</option>
+								<option value="5">Metros</option>
+								<label>Materialize Select</label>
+							</select>
 						</div>
 					</div>
 
-					<div class="col-md-4">
-						<div class="form-group">
-							<label for="tarea" class="col-sm-10 col-form-label">Unidad Medida:</label>
-							<div class="col-sm-10">
-							  	<select name="unidad_medida" id="unidad_medida" class="form-control">
-							  		<option value="0">[Seleccionar]</option>
-							  		<option value="1">Unidad</option>
-							  		<option value="2">Millar</option>
-							  		<option value="3">Litro</option>
-							  		<option value="4">Galon</option>
-							  		<option value="5">Metros</option>
-
-							  	</select>
-							</div>
-
-							<label for="tarea" class="col-sm-3 col-form-label">Prioridad:</label>
-							<div class="col-sm-10">
-							  	<select name="prioridad" id="prioridad" class="form-control">
-							  		<option value="0">[Seleccionar]</option>
-							  		<option value="1">Baja</option>
-							  		<option value="2">Media</option>
-							  		<option value="3">Alta</option>
-							  	</select>
-							</div>
-
-						</div>
+					<label for="tarea" class="col-sm-2 col-form-label">Prioridad:</label>
+					<div class="col-sm-4">
+					  	<select name="prioridad" id="prioridad" class="form-control">
+					  		<option value="0">[Seleccionar]</option>
+					  		<option value="1">Baja</option>
+					  		<option value="2">Media</option>
+					  		<option value="3">Alta</option>
+					  	</select>
 					</div>
-
 				</div>
+
 
 				<div class="row">
 					<div class="col-md-12">
@@ -195,13 +188,15 @@
 				</div>
 			</div>
 
+
+		</div>
+		
+		<div class="form-group row">
+			<div class="col-sm-12">
+				<button type="submit" class="btn btn-success">Guardar </button>
+				<button type="submit" class="btn btn-primary">Modificar </button>
+				<button type="submit" class="btn btn-danger">Eliminar </button>
 			
-
-			<div class="col-md-1">
-				<!-- Botón en HTML (lanza el modal en Bootstrap) -->
-				<button type="submit" class="btn btn-info">Guardar </button>
-				
-
 			</div>
 		</div>
 		<!-- FIN DE LISTADO DE ACTIVIDADES -->	
@@ -209,7 +204,20 @@
 	</form>
 </div>
 	<script src="js/inicio.js" type="text/javascript"></script>
-	<script src="js/index.js"></script>
+	<script src="js/index.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+		
+		function enviar(id){
+			console.log(id);
+			location.href= "./index3.php?id=" + id;
+		}
+
+		$(document).ready(function(){
+			$('select').formSelect();
+		});
+	</script>
+
 
 </body>
 

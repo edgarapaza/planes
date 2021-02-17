@@ -5,8 +5,8 @@ class Conexion
 	public function Conectar()
 	{
 		$host = "localhost";
-		$user = "usuario";
-		$pass = "Archivo123$";
+		$user = "root";
+		$pass = "";
 		$db   = "planes";
 
 		$mysqli = new mysqli($host, $user, $pass, $db);

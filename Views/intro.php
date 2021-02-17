@@ -8,14 +8,23 @@ $data = $planes->ListActivities();
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-12">
-			<h3 align="center">Listado de Planes registrados</h3>
+		<div class="col-md-10">
+			<h3>Listado de Planes registrados</h3>
 		</div>
+		<div class="col-md-2">
+			<select name="anio" class="form-control">
+				<option value="2021">2021</option>
+				<option value="2022">2022</option>
+				<option value="2023">2023</option>
+				<option value="2024">2024</option>
+				<option value="2025">2015</option>
+			</select>
+		</div>
+
 	</div>
 
 	<div class="row">
 		<div class="col-sm-12">
-			<h4 align="center">Planes registrados por Sub Gerencia</h4>
 			
 			<table class="table">
 				<thead>
@@ -46,7 +55,7 @@ $data = $planes->ListActivities();
 								<?php echo $fila['meta'];?>
 							</td>
 								 
-							<td><a href="#" class="btn btn-primary" onclick="Codigo(<?php echo $fila['idplanes1'];?>)"> >> </a></td>
+							<td><a href="#" class="button" onclick="Codigo(<?php echo $fila['idplanes1'];?>)"> >> </a></td>
 						</tr>
 					
 					<?php

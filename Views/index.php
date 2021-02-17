@@ -18,34 +18,43 @@ if(empty($msg))
 <script src="js/index.js" type="text/javascript"></script>
 
 	<center>
-	<div class="h3"> <span class="badge bg-secondary">1</span> -------- 2 -------- 3 -------- 4</div>	
+	<div class="h3"> <span class="">1</span> -------- 2 -------- 3 -------- 4</div>	
 	</center>
 
 	<form action="../Controllers/guardarplanes1.controller.php" method="post" enctype="multipart/form-data">
 
 
-
+	<div class="container">
+	<div class="input-field col s12">
+    <select>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+    <label>Materialize Select</label>
+  </div>
+	</div>
 		<!-- Cabecera  -->
 		<div class="row">
 
-			<div class="col">
+			<div class="">
 			  <h3 class="h3 text-center bg-info">DATOS GENERALES</h3>
 			  
-				<div class="form-group row">
-				  <label for="centro_costo" class="col-sm-2 col-form-label">Centro de costo</label>
-				  <div class="col-sm-10">
-					 <select name="ccosto" id="">
+				  <label for="centro_costo" class="col-sm-2">Centro de costo</label>
+				<div class="input-field col s12">
+				  
+					<select name="ccosto" id="centro_costo" class="">
 					 	<?php
 					 		while ($fila= $datacc->fetch_array(MYSQLI_ASSOC)) :
-								
 					 	?>
 					 	<option value="<?php echo $fila['idcc'];?>"><?php echo $fila['ccosto'];?></option>
-					 	
 					 	<?php 
 					 		endwhile;
 					 	?>
-					 </select>
-				  </div>
+					</select>
+					<label>Hola</label>
+				  
 				</div>
 				<!-- <div class="form-group row">
 					<label for="gerencia" class="col-sm-2 col-form-label">Municipalidad</label>
@@ -77,10 +86,13 @@ if(empty($msg))
 				</div>
 
 				<h3>Articulacion al Planeamiento Estrategico Institucional 2021</h3>
-			  	<div class="form-group">
+			  	<div class="form-group row">
 					<label for="objetivo_general" class="col-sm-10 col-form-label">Alineado al Objetivo Estrategico</label>
 					<div class="col-sm-6">
 					  <div id="d_objetivo_estrategico"></div>
+					</div>
+					<div class="col-sm-6">
+					  <button type="button" class="btn btn-success" ="btnAgregar">+ Agregar</button>
 					</div>
 			  	</div>
 
@@ -104,6 +116,10 @@ if(empty($msg))
 
   	</form>
 
-</body>
-
-</html>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#btnAgregar").click(function(){
+			alert("aqui");
+		});
+	});
+</script>

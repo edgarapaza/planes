@@ -1,10 +1,10 @@
 {
-  "name": " ",
+  "name": "planes",
   "version": "0.0.1",
-  "description": "",
-  "keywords": "",
-  "license": "",
-  "author": "",
+  "description": "Sistema de planeamiento Estrategico",
+  "keywords": [],
+  "license": "ISC",
+  "author": "Edgar Apaza Choque",
   "scripts": {
     "build": "parcel build index.html",
     "dev": "parcel index.html --open",
@@ -13,5 +13,17 @@
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.4"
-  }
+  },
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edgarapaza/planes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/edgarapaza/planes/issues"
+  },
+  "homepage": "https://github.com/edgarapaza/planes#readme"
 }

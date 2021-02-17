@@ -213,7 +213,7 @@ class Planes
 	function ListaProgrActividades($idplanes)
 	{
 
-		$sql ="SELECT idprogfis, idplanes, actividad FROM progfisica WHERE idplanes = ".$idplanes." ORDER BY prioridad;";
+		$sql ="SELECT idprogfis, idplanes, actividad FROM progfisica WHERE idplanes = ".$idplanes." ORDER BY prioridad LIMIT 1;";
 
 		if(!$result = $this->conn->query($sql))
 		{

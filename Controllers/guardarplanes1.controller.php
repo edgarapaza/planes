@@ -32,7 +32,7 @@ if(empty($tarea) || empty($meta))
 
 	if($dat[0] > 0)
 	{
-		header("Location: ../Views/index2.php?idplan=".$dat[0]);
+		header("Location: ../Views/intro.php");
 	}else{
 		
 		header("Location: ../Views/index.php?error=Error");

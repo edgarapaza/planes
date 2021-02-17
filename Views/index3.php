@@ -1,10 +1,10 @@
 <?php
 	session_start();
-	include "header.php";
+	require_once("header.php");
 	require_once "../Models/planes.models.php";
 	
+	$id = $_REQUEST['id'];
 	$idplanes = $_SESSION['idplanes1'];
-
 
 	$planes = new Planes();
 	$dataprog = $planes->ListaProgrActividades($idplanes);
@@ -12,254 +12,191 @@
 ?>
 	<style type="text/css" media="screen">
 	  .display_box{
-	    border: 1px solid blue;
-	    background-color: #e3e3e3;
-	    padding: 2px;
-	    height: 200px;
-	    width: 900px;
+		border: 1px solid blue;
+		background-color: #e3e3e3;
+		padding: 2px;
+		height: 200px;
+		width: 900px;
 
 	  }
 	  .caja{
-	    display: block;
+		display: block;
 	  }
 	  li{
-	    list-style: none;
+		list-style: none;
 	  }
 	  .clasificador{
-	    color: green;
+		color: green;
 	  }
 	  .texto{
-	    /*border: 1px solid orange;*/
-	    color: blue;
+		/*border: 1px solid orange;*/
+		color: blue;
 	  }
 	</style>
 	
 
+<h3>PROGRAMACIÓN FINANCIERA</h3>
+<center>
+	<div> 1 -------- 2 -------- <span class="">3</span> -------- 4</div>	
+</center>
+
+
+<button type="button" name="btnClasificador" id="btnClasificador" class="button success">Clasificador +</button>
+
+
+<div class="grid-x grid-margin-x">
 	
+	<input type="hidden" class="" name="idespecifica" id="idespecifica">
+	<label for="">Equipos/servicio: *</label>
+	<input type="text" class="cell medium-3" name="equipos" id="equipos">
+	<label for="">Codigo  : </label>
+	<input type="text" class="cell medium-3" name="especifica" id="especifica">
+	<label for="">Descripcion: </label>
+	<input type="text" class="cell medium-7" name="descripcion" id="descripcion">
+	
+	<label for="">Nombre:</label>
+	<input type="text" class="cell medium-3" name="nombre" id="nombre">
+	
+	<label for="">Cantidad:</label>
+	<input type="number" min="1" value="1" class="cell medium-3" name="cantidad" id="cantidad">
 
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-sm-12">
-			
-			<center>
-				<div class="h3"> 1 -------- 2 -------- <span class="badge bg-secondary">3</span> -------- 4</div>	
-			</center>
+	<input type="hidden" name="idplanes" value="<?php echo $idplanes;?>">
+	<input type="hidden" name="idprogfis" value="<?php echo $id;?>">
+</div>
 
-			<div class="row">
-				<div class="col-sm-12">
-					
+<div class="grid-x">
+	<table class="">
+			<thead>
+				<tr>
+					<th>Ene</th>
+					<th>Feb</th>
+					<th>Mar</th>
+					<th>Abr</th>
+					<th>May</th>
+					<th>Jun</th>
+					<th>Jul</th>
+					<th>Ago</th>
+					<th>Set</th>
+					<th>Oct</th>
+					<th>Nov</th>
+					<th>Dic</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+	  			<td><input type="text" value="0" name="txtEnero" id="txtEnero" size="4"></td>
+	  			<td><input type="text" value="0" name="txtFebrero" id="txtFebrero" size="4"></td>
+	  			<td><input type="text" value="0" name="txtMarzo" id="txtMarzo" size="4"></td>
+	  			<td><input type="text" value="0" name="txtAbril" id="txtAbril" size="4"></td>
+	  			<td><input type="text" value="0" name="txtMayo" id="txtMayo" size="4"></td>
+	  			<td><input type="text" value="0" name="txtJunio" id="txtJunio" size="4"></td>
+	  			<td><input type="text" value="0" name="txtJulio" id="txtJulio" size="4"></td>
+	  			<td><input type="text" value="0" name="txtAgosto" id="txtAgosto" size="4"></td>
+	  			<td><input type="text" value="0" name="txtSetiembre" id="txtSetiembre" size="4"></td>
+	  			<td><input type="text" value="0" name="txtOctubre" id="txtOctubre" size="4"></td>
+	  			<td><input type="text" value="0" name="txtNoviembre" id="txtNoviembre" size="4"></td>
+	  			<td><input type="text" value="0" name="txtDiciembre" id="txtDiciembre" size="4"></td>
+	  			<td><input type="text" name="txtTotal" id="txtTotal" size="4" readonly=""></td>
+			</tbody>
+		</table>
+	</div>
 
-	    				
-				</div>
-			</div>
-
-			<form action="../Controllers/guardarfinanciera.controller.php" method="post">
+	<form action="../Controllers/guardarfinanciera.controller.php" method="post">
 				<!-- LISTADO DE ACTIVIDADES -->
-				<div class="row">
 
-					<div class="col-sm-12">
-						<h3 class="h3 text-center bg-info">PROGRAMACIÓN FINANCIERA</h3>
+		<button type="submit" class="btn btn-success">Guardar</button>
+	
+	</form>
 
-					</div>
 
-					
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<table class="table">
-						  		<thead>
-						  			<tr>
-						  				<th colspan="13">Programación FINANCIERA</th>
-						  			</tr>
-						  			<tr>
-						  				<th>Actividad</th>
-						  				<th></th>
-						  				<th>Especifica</th>
-						  				<th>Ene</th>
-						  				<th>Feb</th>
-						  				<th>Mar</th>
-						  				<th>Abr</th>
-						  				<th>May</th>
-						  				<th>Jun</th>
-						  				<th>Jul</th>
-						  				<th>Ago</th>
-						  				<th>Set</th>
-						  				<th>Oct</th>
-						  				<th>Nov</th>
-						  				<th>Dic</th>
-						  				<th>Total</th>
-						  			</tr>
-						  		</thead>
-						  		<tbody>
-						  			<?php
-						  				$i=1;
-						  				while ($fila= $dataprog->fetch_array(MYSQLI_ASSOC)) :		
-						  			?>
-						  			<tr>
-						  				<?php echo $fila['idprogfis'];
-												echo $fila['idplanes'];?>
-						  				<td><?php echo $fila['actividad'];?></td>
-						  				<td>
-						  					<a href="#?idd=<?php echo $fila['idprogfis'];?>" class="btn btn-primary edgar" data-toggle="modal" data-target="#espe_gasto" codigo="<?php echo $fila['idprogfis'];?>">+</a>
-						  					
-						  				</td>
-						  				<td>
-						  					<input type="text" id="caja_codigo<?php echo $fila['idprogfis'];?>">
-										    <input type="text" id="especifica<?php echo $fila['idprogfis'];?>">
-										    <input type="text" id="descripcion<?php echo $fila['idprogfis'];?>">
-						  				</td>
 
-							  			<td><input type="text" value="0" name="txtEnero<?php echo $fila['idprogfis'];?>" id="txtEnero<?php echo $fila['idprogfis'];?>" size="4"></td>
-							  			<td><input type="text" value="0" name="txtFebrero<?php echo $fila['idprogfis'];?>" id="txtFebrero<?php echo $fila['idprogfis'];?>" size="4"></td>
-							  			<td><input type="text" value="0" name="txtMarzo<?php echo $fila['idprogfis'];?>" id="txtMarzo<?php echo $fila['idprogfis'];?>" size="4"></td>
-							  			<td><input type="text" value="0" name="txtAbril<?php echo $fila['idprogfis'];?>" id="txtAbril<?php echo $fila['idprogfis'];?>" size="4"></td>
-							  			<td><input type="text" value="0" name="txtMayo<?php echo $fila['idprogfis'];?>" id="txtMayo<?php echo $fila['idprogfis'];?>" size="4"></td>
-							  			<td><input type="text" value="0" name="txtJunio<?php echo $fila['idprogfis'];?>" id="txtJunio<?php echo $fila['idprogfis'];?>" size="4"></td>
-							  			<td><input type="text" value="0" name="txtJulio<?php echo $fila['idprogfis'];?>" id="txtJulio<?php echo $fila['idprogfis'];?>" size="4"></td>
-							  			<td><input type="text" value="0" name="txtAgosto<?php echo $fila['idprogfis'];?>" id="txtAgosto<?php echo $fila['idprogfis'];?>" size="4"></td>
-							  			<td><input type="text" value="0" name="txtSetiembre<?php echo $fila['idprogfis'];?>" id="txtSetiembre<?php echo $fila['idprogfis'];?>" size="4"></td>
-							  			<td><input type="text" value="0" name="txtOctubre<?php echo $fila['idprogfis'];?>" id="txtOctubre<?php echo $fila['idprogfis'];?>" size="4"></td>
-							  			<td><input type="text" value="0" name="txtNoviembre<?php echo $fila['idprogfis'];?>" id="txtNoviembre<?php echo $fila['idprogfis'];?>" size="4"></td>
-							  			<td><input type="text" value="0" name="txtDiciembre<?php echo $fila['idprogfis'];?>" id="txtDiciembre<?php echo $fila['idprogfis'];?>" size="4"></td>
-							  			<td><input type="text" name="txtTotal<?php echo $fila['idprogfis'];?>" id="txtTotal<?php echo $fila['idprogfis'];?>" size="4" readonly=""></td>
-						  			</tr>
-						  			<?php 
-						  				$i++;
-						  				endwhile;
-
-						  				?>
-						  		</tbody>
-						</table>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-2">
-						<!-- Botón en HTML (lanza el modal en Bootstrap) -->
-						<button type="submit" class="btn btn-success">Guardar</button>
-					</div>
-				</div>
-				<!-- FIN DE LISTADO DE ACTIVIDADES -->	
-			</form>
+	<div class="">
+		<label for="xcodigo">Codigo</label>
+		<div class="col-sm-2">
+			<input type="text" name="xcodigo" id="xcodigo" class="form-control">
+		</div>
+		<label for="" class="col-sm-1">Buscador</label>
+		<div class="col-sm-6">
+			<input type="text" name="bien" id="bien" value="<?php echo $cadena;?>" class="form-control">
 		</div>
 	</div>
-</div>
 
+	<div id="resultado"></div>
 
-
-<!-- Modal -->
-<div class="modal fade" id="espe_gasto" tabindex="-1" role="dialog" aria-labelledby="titulo" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="titulo">Seleccionar Especifica de Gasto</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        	<div class="col-sm-12 form-group row">
-	        	<label for="xcodigo">Codigo</label>
-	          	<div class="col-sm-2">
-	            	<input type="text" name="xcodigo" id="xcodigo" class="form-control">
-	          	</div>
-	          	<label for="" class="col-sm-1">Buscador</label>
-	          	<div class="col-sm-6">
-	            	<input type="text" name="bien" id="bien" value="<?php echo $cadena;?>" class="form-control">
-	          	</div>
-		    </div>
-
-			<div id="resultado"></div>
-
-		
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
+<script src="js/inicio.js" type="text/javascript"></script>
+<script src="js/index.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 	$(document).ready(function(){
 
-	  	ed = $(".edgar");
-	  	ed.attr("codigo")
-
-	  	$("#resultado").on('click', 'a', function () {
-      
+		$("#resultado").on('click', 'a', function () {
+	  
 			var idgasto    = $(this).attr('id');
 			var especifica = $(this).attr('especifica');
 			var mides      = $(this).attr('mides');
 
-			
-			console.log(ed.attr("codigo"));
-			var caja   = $("#caja_codigo1");
-			var espe   = $("#especifica1");
-			var descri = $("#descripcion1");
+			var caja   = $("#idespecifica");
+			var espe   = $("#especifica");
+			var descri = $("#descripcion");
 
-	      	caja.val(idgasto);
-	      	espe.val(especifica);
-	      	descri.val(mides);
-	    });
+			caja.val(idgasto);
+			espe.val(especifica);
+			descri.val(mides);
+		});
 
-	    $("#xcodigo").keyup(function(){
-	      var cod = document.getElementById("xcodigo").value;
+		$("#xcodigo").keyup(function(){
+		  var cod = document.getElementById("xcodigo").value;
 
-	      var param = {
-	        "codigo": cod
-	      };
+		  var param = {
+			"codigo": cod
+		  };
 
-	      $.ajax({
-	        method:'post',
-	        url: '../Controllers/bienes.controller.php',
-	        data: param,
-	        beforeSend: function(){
+		  $.ajax({
+			method:'post',
+			url: '../Controllers/bienes.controller.php',
+			data: param,
+			beforeSend: function(){
 
-	        },
-	        success: function(res){
-	          $("#resultado").html(res);
-	        },
-	        error: function(){
-	          console.log("Error");
-	        }
-	      })
+			},
+			success: function(res){
+			  $("#resultado").html(res);
+			},
+			error: function(){
+			  console.log("Error");
+			}
+		  })
 
-	    });
+		});
 
-	    $('#xcodigo').blur(function() { 
-	      $('.display_box').hide();
-	    });
+		$('#xcodigo').blur(function() { 
+		  $('.display_box').hide();
+		});
 
-	    $("#bien").keyup(function(){
-	      var cod = document.getElementById("bien").value;
+		$("#bien").keyup(function(){
+		  var cod = document.getElementById("bien").value;
 
-	      var param = {
-	        "bien": cod
-	      };
+		  var param = {
+			"bien": cod
+		  };
 
-	      $.ajax({
-	        method:'post',
-	        url: '../Controllers/bienesxNombre.controller.php',
-	        data: param,
-	        beforeSend: function(){
+		  $.ajax({
+			method:'post',
+			url: '../Controllers/bienesxNombre.controller.php',
+			data: param,
+			beforeSend: function(){
 
-	        },
-	        success: function(res){
-	          $("#resultado").html(res);
-	        },
-	        error: function(){
-	          console.log("Error");
-	        }
-	      })
+			},
+			success: function(res){
+			  $("#resultado").html(res);
+			},
+			error: function(){
+			  console.log("Error");
+			}
+		  })
 
-	    });
+		});
 
 	});
 
-	  
-	</script>
+</script>
+
